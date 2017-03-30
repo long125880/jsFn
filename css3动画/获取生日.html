@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js从身份证获取年龄-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<script>
+function GetBirthDay(idCard) {
+    var birthday = "";
+    if (idCard != null && idCard != "") {
+        if (idCard.length == 15) {
+            birthday = "19" + idCard.substr(6, 6);
+        } else if (idCard.length == 18) {
+            birthday = idCard.substr(6, 8);
+        }
+
+        birthday = birthday.replace(/(.{4})(.{2})/, "$1-$2-");
+    }
+    return birthday;
+};
+document.write("身份证号:166602198806180063---- 获取后值：" + GetBirthDay("166602198806180063"));</script>
+</body>
+</html>

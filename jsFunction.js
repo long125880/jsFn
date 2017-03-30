@@ -113,3 +113,92 @@ function count(data, arr) {
 	}
 	return arrs;
 }
+
+
+//身份证加"*"处理 分两种情况 成人 or 儿童
+
+function hideInfo(e) {
+    var d = e.length;
+    return d<18?e:e.replace(/^(.{6})(?:\d+)(.{4})$/,"$1****$2");
+}
+
+//手机号加"*"处理
+function hideTel(e) {
+    return e.replace(/^(.{3})(?:\d+)(.{4})$/,"$1****$2");
+}
+
+//javascrip 解析　ｘｍｌ
+function parseDom(arg) { 
+　　 var objE = document.createElement("div"); 
+　　 objE.innerHTML = arg; 
+　　 return objE.childNodes; 
+};
+
+
+//天数加一
+function GetDateStrH(data1,h) {
+
+    var  Y1 = data1.substring(0, 4);
+    var  m1 = data1.substring(5, 7)-1;
+    var  d1 = data1.substring(8, 10);
+    // var  h1 = data1.substring(11, 13);
+    // var  M1 = data1.substring(14, 17);
+    var  dd = new Date(Y1,m1,d1)
+    dd.setHours(dd.getHours() + h);//获取AddDayCount天后的日期
+    var y = dd.getFullYear();
+    var m = dd.getMonth() + 1;//获取当前月份的日期
+    var d = dd.getDate();
+
+    if ((m + "").length == 1) {
+        m = "0" + m;
+    }
+    if ((d + "").length == 1) {
+        d = "0" + d;
+    }
+
+    return y + "-" + m + "-" + d
+
+}
+
+//获取客户端设备类型
+function getClientType() {
+    var clientType = "PC";
+    if (/android/i.test(navigator.userAgent)) {
+        clientType = "android";
+    }
+    if (/ipad/i.test(navigator.userAgent)) {
+        clientType = "ipad";
+    }
+    if (/iphone/i.test(navigator.userAgent)) {
+        clientType = "iphone";
+    }
+    return clientType;
+}
+
+//  根据时间 填写 星期几
+function getWeekDaylong(obj){
+    var NewArray = new Array("周日","周一","周二","周三","周四","周五","周六");
+    var oArray = ["今天","明天","后天"];
+    var DateYear = parseInt(obj.split("-")[0]);
+    var DateMonth = parseInt(obj.split("-")[1]);
+    var DateDay = parseInt(obj.split("-")[2]);
+    var NewDate = new Date(DateYear,DateMonth-1,DateDay);
+    var NewWeek = NewDate.getDay();
+    var nowDate = new Date();
+    var num = 1;
+    var currentDate = nowDate.getFullYear()+"-"+(oneToTwo(nowDate.getMonth()+1))+"-"+oneToTwo(nowDate.getDate());
+    var cha = removeType(obj) - removeType(currentDate);
+    return cha > 2?NewArray[NewWeek]:oArray[cha];
+    //一位数转成两位数
+    function oneToTwo(b) {
+        if(b<10) {
+            return "0"+b;
+        }else {
+            return b;
+        }
+    }
+    //去掉横杠好比较大小
+    function removeType(e) {
+        return e.replace(/\-/g,"");
+    }
+}

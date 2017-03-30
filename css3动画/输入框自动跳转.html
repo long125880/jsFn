@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>js输入框自动跳转-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.cha {
+	float:left;
+	overflow:hidden;
+}
+.tantdzuo {
+	text-align:right;
+	padding-right:20px;
+}
+.tantdzuok {
+	padding-right:40px;
+}
+</style>
+</head>
+<body>
+请输入数字查看效果
+<input type="hidden" value="${ip}" id="ip">
+<table style="line-height: 60px; margin-left: 30px;">
+  <tr class="tantr">
+    <td class="tantdzuo">IP:</td>
+    <td class="tantdzuok"><input name="ipone" onkeyup="Inputjump(this);" style="width: 50px; float: left;" type="text"  placeholder=" ---" class="layui-input">
+      <input name="iptwo" onkeyup="Inputjump(this);" style="width: 50px; float: left; margin-left: 15px;" type="text"  placeholder=" ---"  class="layui-input">
+      <input name="ipthress" onkeyup="Inputjump(this);" style="width: 50px; float: left; margin-left: 15px;" type="text"  placeholder=" ---" class="layui-input">
+      <input name="ipfour"  onkeyup="Inputjump(this);" style="width: 50px; float: left; margin-left: 15px;" type="text"  placeholder=" ---" class="layui-input"></td>
+  </tr>
+</table><script>
+//ip输入自动跳转
+function Inputjump(ip) {
+    //输入的值
+    var input = ip.value;
+    //正则表达式
+    var reg = /^[0-9]*$/;
+    //进行判断
+    if (!reg.test(input)) {
+        //layer.alert('请输入正确IP'); 	
+        layer.msg('请输入正确IP');
+        $(ip).val("");
+        $(ip).focus();
+        return;
+    }
+    //如果输入的ip值长度大于3跳转到下一个输入框
+    if (input.length >= 3) {
+        var fourinput = $("[name='ipfour']").val();
+        if (input == fourinput) {
+            $("#tranmoney").focus();
+        }
+        //跳转光标
+        $(ip).next().focus();
+    }
+};</script>
+</body>
+</html>

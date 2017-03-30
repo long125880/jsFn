@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS实现单行、多行文本溢出显示省略号（…）-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.box {
+	width:300px;
+	height:20px;
+	padding:10px;
+	border:1px solid #424242;
+	line-height:24px
+}
+.aa {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.bb {
+	height:65px;
+	overflow:hidden;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:3;
+	overflow:hidden;
+}
+.ellips {
+	position:relative;
+	width:100px;
+	height:60px;
+	line-height:20px;
+	overflow:hidden;
+	background:#fff
+}
+.ellips .dot {
+	position:absolute;
+	right:0px;
+	bottom:0px;
+	height:20px;
+	background:#fff
+}
+</style>
+</head>
+<body>
+单行
+<div class="box aa"> Query是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。 </div>
+<br>
+<br>
+
+多行方法1
+<div class="box bb"> Query是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。Query是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。Query是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。 </div>
+
+<br>
+<br>
+
+
+多行方法2
+<div class="ellips"><div class="dot">...</div>div relative定位定高定宽，内部放个个浮动层浮动在右下角字</div><script>
+</script>
+</body>
+</html>

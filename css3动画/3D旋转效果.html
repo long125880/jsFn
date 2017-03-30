@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D炫酷旋转效果-jq22.com</title>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+* {
+	box-sizing:border-box;
+}
+html {
+	background:black;
+}
+section {
+	position:fixed;
+	top:calc(50% - 20em - 20px);
+	left:calc(50% - 20em - 20px);
+	margin:0 auto;
+}
+div {
+	display:inline-block;
+	width:auto;
+	padding:1em;
+	background:brown;
+}
+</style>
+</head>
+<body>
+<section>
+		<div>
+			<div>
+				<div>
+					<div>
+						<div>
+							<div>
+								<div>
+									<div>
+										<div>
+											<div>
+												<div>
+													<div>
+														<div>
+															<div>
+																<div>
+																	<div>
+																		<div>
+																			<div>
+																				<div>
+																					<div>
+																						<div>
+																							
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<style id='spin'></style><script>
+// 找到spin的ID
+var deg = 0,
+tag = document.querySelector('#spin');
+
+function spin() {
+    deg++;
+    //增加旋转角度的同时渐变颜色
+    var style = ' div {border: 1px solid hsl(' + deg / 15 + ',75%,75%);transform: rotate(' + deg / 15 + 'deg);}';
+    tag.innerHTML = style;
+    // 请求动画styles
+    window.requestAnimationFrame(spin);
+}
+window.requestAnimationFrame(spin)</script>
+</body>
+</html>
