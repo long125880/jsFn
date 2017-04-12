@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div ng-controller="myCtrl">
+	 
+	<select ng-model="selectedSite" ng-options="x.site for x in sites">
+	</select>
+
+	<h1>你选择的是: {{selectedSite.site}}</h1>
+	<h1>你选择的是: {{selectedSite.id}}</h1>
+	 
+	</div>
+	 
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope,$http) {
+			$scope.sites=[];
+			$http({
+				method:"POST",
+				url:"http://ca.nuoya.io/leaveSub/api/company "
+			}).then(function successCallback(res) {
+				for(var i=0; i<res.data.companyDatas.length; i++) {
+					$scope.sites.push({
+						site:res.data.companyDatas[i].UnitName,
+						id:res.data.companyDatas[i].UnitID
+					})
+				};
+				$scope.selectedSite =$scope.sites[0];
+
+				},function errorCallback(res){
+
+			});
+
+		});
+	</script>
+</body>
+</html>
